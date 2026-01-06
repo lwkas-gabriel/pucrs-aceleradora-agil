@@ -81,7 +81,39 @@ function handleOperation() {
                 break;
 
             case 4:
-                console.log("Remover Produto (ainda não implementado)");
+                console.log("Remover Produto");
+
+                console.log("Inserir ID a ser removido:");
+                const productId = prompt("> ");
+
+                let productPosition = listaProdutos.indexOf(listaProdutos.find(produto => produto.id === productId));
+
+                console.log(productPosition)
+
+                if (productPosition >= 0) {
+                    console.log("Deseja realmente remover o produto da base de dados?");
+                    console.log("1 - Sim");
+                    console.log("2 - Não");
+
+                    const deleteOpConfirmation = Number(prompt("> "));
+
+                    switch (deleteOpConfirmation) {
+                        case 1:
+                            listaProdutos.splice(productPosition, 1);
+                            saveJsonFile(listaProdutos);
+                            console.log("Remoção efetuada com sucesso!");
+                            break;
+                        case 2:
+                            console.log("Cancelando operação...")
+                            break;
+                        default:
+                            console.log("Operação inválida... Tente novamente...")
+                            break;
+                    }
+                } else {
+                    console.log("ID não encontrado!")
+                }
+
                 break;
 
             case 5:
