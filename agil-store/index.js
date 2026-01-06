@@ -85,7 +85,51 @@ function handleOperation() {
                 break;
 
             case 5:
-                console.log("Buscar Produto (ainda não implementado)");
+                console.log("Buscar Produto");
+                let searchOp = Number.MAX_SAFE_INTEGER
+
+                console.log("0 - Sair")
+                console.log("1 - Buscar por ID")
+                console.log("2 - Buscar por Nome")
+
+                searchOp = Number(prompt("> "));
+
+                switch (searchOp) {
+                    case 0:
+                        console.log("Cancelando operação...")
+                        break;
+                    case 1:
+                        console.log("Inserir ID")
+                        let productId = prompt("> ");
+
+                        let getProductById = listaProdutos.find(produto => produto.id === productId)
+
+                        console.log("Informações do Produto");
+                        console.log("======================");
+                        console.log("Nome: ", getProductById.nome);
+                        console.log("Quantidade: ", getProductById.quantidade);
+                        console.log("Preço: "), getProductById.preco;
+                        console.log("======================");
+
+                        break;
+                    case 2:
+                        console.log("Inserir Nome do Produto")
+                        let productName = prompt("> ");
+
+                        let getProductByName = listaProdutos.filter((produto) => {
+                            if (produto.nome.toLowerCase().includes(productName.toLowerCase())) {
+                                return produto;
+                            }
+                        })
+
+                        console.table(getProductByName);
+
+                        break;
+                    default:
+                        console.log("Operação inválida...")
+                        break;
+                }
+
                 break;
 
             default:
